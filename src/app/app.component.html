@@ -1,1 +1,21 @@
-<span>Hola mundo</span>
+<div style="display: block" *ngIf="_signalRSvc.data">
+
+    <canvas baseChart
+        [datasets]="_signalRSvc.data"
+        [labels]="labels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [type]="'bar'"
+        (chartClick)="chartClicked($event)"
+    >
+    </canvas>
+</div>
+
+<br><br>
+
+<ul>
+    <li *ngFor="let data of _signalRSvc.broadcastedData">
+        <strong>Label: </strong> {{data.label}} - <strong>Value: </strong> {{data.data[0]}}
+    </li>
+</ul>
